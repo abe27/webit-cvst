@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Loading } from "..";
 
-const InvoiceInfomation = () => {
+const InvoiceInfomation = ({ data }) => {
   const [productData, setProductData] = useState([]);
   const [pdsData, setPdsData] = useState([]);
 
@@ -14,19 +14,8 @@ const InvoiceInfomation = () => {
   };
 
   useEffect(() => {
-    const fetPro = setTimeout(() => {
-      FetchProduct();
-    }, 1500);
-
-    const fetPds = setTimeout(() => {
-      FetchPds();
-    }, 1500);
-
-    return () => {
-      clearTimeout(fetPro);
-      clearTimeout(fetPds);
-    };
-  }, []);
+    console.dir(data);
+  }, [data]);
 
   return (
     <>
@@ -56,19 +45,16 @@ const InvoiceInfomation = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan={6}>
-                  <Loading />
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              {data.map((i, e) => (
+                <tr key={e}>
+                  <td>{e + 1}</td>
+                  <td>{i.partno}</td>
+                  <td>{i.partname}</td>
+                  <td>{i.qty}</td>
+                  <td>{i.price}</td>
+                  <td>{i.sum_price}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -86,11 +72,11 @@ const InvoiceInfomation = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td colSpan={2}>
                     <Loading />
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </>
@@ -104,11 +90,11 @@ const InvoiceInfomation = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td colSpan={2}>
                     <Loading />
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </>
