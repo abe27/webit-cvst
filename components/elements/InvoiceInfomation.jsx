@@ -2,21 +2,6 @@ import { useEffect, useState } from "react";
 import { Loading } from "..";
 
 const InvoiceInfomation = ({ data }) => {
-  const [productData, setProductData] = useState([]);
-  const [pdsData, setPdsData] = useState([]);
-
-  const FetchProduct = () => {
-    console.dir("Loading FetchProduct Data");
-  };
-
-  const FetchPds = () => {
-    console.dir("Loading FetchPds Data");
-  };
-
-  useEffect(() => {
-    console.dir(data);
-  }, [data]);
-
   return (
     <>
       <div className="grid grid-cols-4 gap-2">

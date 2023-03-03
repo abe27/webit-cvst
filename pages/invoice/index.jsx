@@ -4,26 +4,26 @@ import { InvoiceHeader, InvoiceInfomation, MainLayOut } from "@/components";
 const InvoicePage = () => {
   const [item, setItem] = useState([]);
   const handleSave = (data) => {
-    setItem([...item, data]);
-    // let isFound = false;
-    // const newState = item.map((obj) => {
-    //   if (obj.partno.indexOf(data.partno) >= 0) {
-    //     isFound = true;
-    //     return {
-    //       ...obj,
-    //       id: data.id,
-    //       qty: data.qty + obj.qty,
-    //       sum_price: data.sum_price + obj.sum_price,
-    //     };
-    //   }
-    //   return obj;
-    // });
+    console.dir(data);
+    let isFound = false;
+    const newState = item.map((obj) => {
+      if (obj.partname.indexOf(data.partname) >= 0) {
+        isFound = true;
+        return {
+          ...obj,
+          id: data.id,
+          qty: data.qty + obj.qty,
+          sum_price: data.sum_price + obj.sum_price,
+        };
+      }
+      return obj;
+    });
 
-    // if (isFound) {
-    //   setItem(newState);
-    // } else {
-    //   setItem([...item, data]);
-    // }
+    if (isFound) {
+      setItem(newState);
+    } else {
+      setItem([...item, data]);
+    }
   };
   return (
     <MainLayOut>
